@@ -5,4 +5,12 @@
 # It will have to invoke scraper
 
 class Cli
+  # puts "what do you wnat"
+  # input = gets.chomp
+
+  # url = create_url(input)
+
+  # def create_url
+  #   "asdfdasfdsaafds#{input}restofurl"
+  # end
 end

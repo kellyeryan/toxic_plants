@@ -6,4 +6,5 @@
 # Stores all plant related info.
 
 class Plant
+  attr_accessor :common_name, :additional_common_name, :scientific_name, :clinical_signs
 end

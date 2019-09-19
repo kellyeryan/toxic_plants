@@ -1,4 +1,5 @@
 require "./config/environment"
 
-# CLI.new.call
+# CLI.call
 
+Scraper.new
