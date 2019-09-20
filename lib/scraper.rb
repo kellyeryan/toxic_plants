@@ -9,9 +9,11 @@
 
 # web page of plants toxic to cats with alphabet search https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/k?field_toxicity_value%5B02%5D=02&
 
+require "byebug"
+
 class Scraper
-  def initialize(letter)
-    url = "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/"
+  def initialize
+    url = "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants?field_toxicity_value%5B%5D=02"
     unparsed_page = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(unparsed_page)
     plant_names = parsed_page.css("div.plant-title-name")
@@ -20,6 +22,6 @@ class Scraper
     # dog_list = parsed_page.css("span").css("a")[0].attributes["href"].value
     # cat_list = parsed_page.css("span").css("a")[1].attributes["href"].value
     # horse_list = parsed_page.css("span").css("a")[2].attributes["href"].value
-    binding.pry
+    byebug
   end
 end

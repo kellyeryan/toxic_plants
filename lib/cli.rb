@@ -11,6 +11,6 @@ class Cli
   # url = create_url(input)
 
   # def create_url
-  #   "asdfdasfdsaafds#{input}restofurl"
+  #   "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/{#input}?field_toxicity_value%5B02%5D=02&""
   # end
 end
