@@ -18,11 +18,14 @@ class Scraper
     parsed_page = Nokogiri::HTML(unparsed_page)
     plant_names = parsed_page.css("div.plant-title-name")
     url_for_plants = parsed_page.css("span").css("a")[4].attributes["href"].value
+    find_url = parsed_page.css("span").css("a")
       # it spans on the page from [3-32]; each plant has two indices that link to the same place, i.e. both [3] and [4] are adam-and-eve plant- could just take odd or even numbers? Or maybe it doesn't matter at all?? How will I make sure they are linked?
 
-    plant_array = plant_names.map do |plant|
-                    plant.text
-    end
-    byebug
+    find_url_2 = find_url.map(&:attributes["href"])
+
+    plant_array = plant_names.map { |plant| plant.text }
+      #plant_array puts common name then latin name -- evens are common name, odds are latin name
+      byebug
+
   end
 end
