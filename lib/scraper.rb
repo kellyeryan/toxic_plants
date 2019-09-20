@@ -17,11 +17,9 @@ class Scraper
     unparsed_page = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(unparsed_page)
     plant_names = parsed_page.css("div.plant-title-name")
-    # are you looking for plants toxic to dogs, cats, or horses?
+    url_for_plants = parsed_page.css("span").css("a")[4].attributes["href"].value
+      # it spans on the page from [3-32]; each plant has two indices that link to the same place - could just take odd or even numbered?
 
-    # dog_list = parsed_page.css("span").css("a")[0].attributes["href"].value
-    # cat_list = parsed_page.css("span").css("a")[1].attributes["href"].value
-    # horse_list = parsed_page.css("span").css("a")[2].attributes["href"].value
     byebug
   end
 end
