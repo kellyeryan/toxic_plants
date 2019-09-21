@@ -6,7 +6,7 @@
 # Stores all plant related info.
 
 class Plant
-  attr_reader :common_name, :additional_common_name, :scientific_name, :clinical_signs, :url, :id
+  attr_reader :common_name, :additional_common_names, :scientific_name, :clinical_signs, :url, :id
 
   @@all = []
 
