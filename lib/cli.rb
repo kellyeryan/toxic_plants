@@ -10,8 +10,8 @@ class Cli
     puts "Welcome to Toxic Plants!"
     puts "This program will find plants that are toxic to cats"
     puts "What is the first letter of the plant you'd like to look up?"
-    input = gets.chomp
-    Scraper.new(input)
+    letter = gets.chomp
+    PlantsScraper.new(letter)
     Plant.all.each do |plant|
       puts "#{plant.id}. #{plant.common_name}"
     end
