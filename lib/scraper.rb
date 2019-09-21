@@ -21,10 +21,11 @@ class Scraper
 
     plant_info = parsed_page.css("div.views-field-title a")
 
-    plant_info.each do |plant|
+    plant_info.each_with_index do |plant, index|
       common_name = plant.text
       url = plant.attributes["href"].value
-      Plant.new(common_name, url)
+      id = index + 1
+      Plant.new(common_name, url, id)
     end
   end
 end

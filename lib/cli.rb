@@ -12,11 +12,13 @@ class Cli
     puts "What is the first letter of the plant you'd like to look up?"
     input = gets.chomp
     Scraper.new(input)
-    Plant.all.each_with_index do |plant, index|
-      puts "#{index + 1}. #{plant.common_name}"
+    Plant.all.each do |plant|
+      puts "#{plant.id}. #{plant.common_name}"
     end
     puts "What is the number of the plant you would like to look up?"
-    input = gets.chomp
+    id = gets.chomp
+    result = Plant.find_by_id(id)
+    result.url
   end
 
 end

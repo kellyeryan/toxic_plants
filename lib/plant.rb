@@ -6,18 +6,25 @@
 # Stores all plant related info.
 
 class Plant
-  attr_accessor :common_name, :additional_common_name, :scientific_name, :clinical_signs
+  attr_reader :common_name, :additional_common_name, :scientific_name, :clinical_signs, :url, :id
 
   @@all = []
 
-  def initialize(common_name, url)
+  def initialize(common_name, url, id)
     @common_name = common_name
     @url = url
+    @id = id
     @@all << self
   end
 
   def self.all
     @@all
+  end
+
+  def self.find_by_id(id)
+    all.find do |plant|
+      id.to_i == plant.id
+    end
   end
 
 end
