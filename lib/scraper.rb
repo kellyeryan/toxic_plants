@@ -12,23 +12,19 @@
 require "byebug"
 
 class Scraper
-  def initialize
-    url = "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants?field_toxicity_value%5B%5D=02"
+  def initialize(letter)
+    url = "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants" \
+          "/#{letter}?field_toxicity_value%5B02%5D=02&"
+
     unparsed_page = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(unparsed_page)
-    plant_names = parsed_page.css("div.plant-title-name")
-    url_for_plants = parsed_page.css("span").css("a")[4].attributes["href"].value
-    find_url = parsed_page.css("span").css("a").map(&:attributes["href"])
-      # it spans on the page from [3-32]; each plant has two indices that link to the same place, i.e. both [3] and [4] are adam-and-eve plant- could just take odd or even numbers? Or maybe it doesn't matter at all?? How will I make sure they are linked?
 
-      find_url.detect { |url| puts url["href"] }
-        # This creates a list of the urls of the plants on the current page and all the subsequent pages that are able to be searched through the alphabet.
-      find_url.each_with_index do |url, index|
-        byebug
-      end
+    plant_info = parsed_page.css("div.views-field-title a")
 
-    plant_array = plant_names.map { |plant| plant.text }
-      #plant_array puts common name then latin name -- evens are common name, odds are latin name
-
+    plant_info.each do |plant|
+      common_name = plant.text
+      url = plant.attributes["href"].value
+      Plant.new(common_name, url)
+    end
   end
 end

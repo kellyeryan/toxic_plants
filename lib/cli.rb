@@ -5,12 +5,18 @@
 # It will have to invoke scraper
 
 class Cli
-  # puts "what do you wnat"
-  # input = gets.chomp
 
-  # url = create_url(input)
+  def self.call
+    puts "Welcome to Toxic Plants!"
+    puts "This program will find plants that are toxic to cats"
+    puts "What is the first letter of the plant you'd like to look up?"
+    input = gets.chomp
+    Scraper.new(input)
+    Plant.all.each_with_index do |plant, index|
+      puts "#{index + 1}. #{plant.common_name}"
+    end
+    puts "What is the number of the plant you would like to look up?"
+    input = gets.chomp
+  end
 
-  # def create_url
-  #   "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/{#input}?field_toxicity_value%5B02%5D=02&""
-  # end
 end
