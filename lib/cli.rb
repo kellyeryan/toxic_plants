@@ -17,8 +17,8 @@ class Cli
     end
     puts "What is the number of the plant you would like to look up?"
     id = gets.chomp
-    result = Plant.find_by_id(id)
-    result.url
+    plant = Plant.find_by_id(id)
+    PlantInfoScraper.new(plant)
   end
 
 end
