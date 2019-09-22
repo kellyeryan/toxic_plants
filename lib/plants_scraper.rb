@@ -6,16 +6,21 @@
 # After scraping it will need to create "plants."
 
 class PlantsScraper
+  attr_reader :parsed_page
+
   def initialize(letter)
     url = "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants" \
           "/#{letter}?field_toxicity_value%5B02%5D=02&"
-
     unparsed_page = HTTParty.get(url)
-    parsed_page = Nokogiri::HTML(unparsed_page)
+    @parsed_page = Nokogiri::HTML(unparsed_page)
+  end
 
-    plant_info = parsed_page.css("div.views-field-title a")
+  def plant_names
+    @parsed_page.css("div.views-field-title a")
+  end
 
-    plant_info.each_with_index do |plant, index|
+  def create_plants
+    plant_names.each_with_index do |plant, index|
       common_name = plant.text
       url = plant.attributes["href"].value
       id = index + 1

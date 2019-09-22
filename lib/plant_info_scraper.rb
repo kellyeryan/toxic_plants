@@ -9,11 +9,11 @@ class PlantInfoScraper
     unparsed_page = HTTParty.get("https://www.aspca.org#{plant.url}")
     parsed_page = Nokogiri::HTML(unparsed_page)
 
-    plant.additional_common_names = parsed_page.css("div.pane-node-field-additional-common-names span.values").text
+    plant.additional_common_names =
+      parsed_page.css("div.pane-node-field-additional-common-names span.values").text
 
     plant.scientific_name = parsed_page.css("div.pane-node-field-scientific-name span.values").text
 
     plant.clinical_signs = parsed_page.css("div.pane-node-field-clinical-signs span.values").text
   end
 end
-
