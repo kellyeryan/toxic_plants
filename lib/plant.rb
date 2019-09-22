@@ -7,6 +7,7 @@
 
 class Plant
   attr_reader :common_name, :additional_common_names, :scientific_name, :clinical_signs, :url, :id
+  attr_writer :additional_common_names, :scientific_name, :clinical_signs
 
   @@all = []
 
@@ -26,5 +27,4 @@ class Plant
       id.to_i == plant.id
     end
   end
-
 end

@@ -15,10 +15,17 @@ class Cli
     Plant.all.each do |plant|
       puts "#{plant.id}. #{plant.common_name}"
     end
+    puts ""
     puts "What is the number of the plant you would like to look up?"
     id = gets.chomp
     plant = Plant.find_by_id(id)
     PlantInfoScraper.new(plant)
+    puts ""
+    puts "Additional names:#{plant.additional_common_names}"
+    puts ""
+    puts "Scientific name:#{plant.scientific_name}"
+    puts ""
+    puts "These are the symptoms that occur when the cat eats #{plant.common_name.downcase}."
+    puts plant.clinical_signs
   end
-
 end
