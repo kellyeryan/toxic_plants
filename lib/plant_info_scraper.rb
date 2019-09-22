@@ -14,7 +14,6 @@ class PlantInfoScraper
     plant.scientific_name = parsed_page.css("div.pane-node-field-scientific-name span.values").text
 
     plant.clinical_signs = parsed_page.css("div.pane-node-field-clinical-signs span.values").text
-
   end
 end
 
