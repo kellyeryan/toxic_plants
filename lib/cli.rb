@@ -48,7 +48,7 @@ class Cli
   def self.id_valid?(id)
     if id.to_i > Plant.all.length || !/[1-9]/.match?(id)
       puts "That is not a valid entry. Please enter" \
-      "the number corresponding to the plant you would like to look up. \n\n"
+      " the number corresponding to the plant you would like to look up. \n\n"
       find_plants_by_id
     end
   end
@@ -61,8 +61,10 @@ class Cli
     puts plant.clinical_signs
   end
 
-  def self.exit_session
+  def self.exit_session(id=nil, letter=nil)
+    if id || letter == "exit"
     puts "Thanks for using Toxic Plants! Goodbye!\n\n"
-    find_plants_by_letter
+    call
+    end
   end
 end
