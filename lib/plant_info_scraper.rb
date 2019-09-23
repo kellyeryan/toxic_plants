@@ -5,15 +5,21 @@
 # It will never use puts.
 
 class PlantInfoScraper
+  attr_reader :parsed_page
+
   def initialize(plant)
     unparsed_page = HTTParty.get("https://www.aspca.org#{plant.url}")
-    parsed_page = Nokogiri::HTML(unparsed_page)
+    @parsed_page = Nokogiri::HTML(unparsed_page)
 
     plant.additional_common_names =
-      parsed_page.css("div.pane-node-field-additional-common-names span.values").text
+      get_info("additional-common-names")
 
-    plant.scientific_name = parsed_page.css("div.pane-node-field-scientific-name span.values").text
+    plant.scientific_name = get_info("scientific-name")
 
-    plant.clinical_signs = parsed_page.css("div.pane-node-field-clinical-signs span.values").text
+    plant.clinical_signs = get_info("clinical-signs")
+  end
+
+  def get_info(selector)
+    @parsed_page.css("div.pane-node-field-#{selector} span.values").text
   end
 end
