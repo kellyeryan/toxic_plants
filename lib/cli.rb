@@ -14,7 +14,7 @@ class Cli
   def self.welcome
     puts "Welcome to Toxic Plants!\n\n"
     puts "This program will identify plants that are" \
-    "toxic to cats and provide the clinical signs of poisoning.\n\n"
+    " toxic to cats and provide the clinical signs of poisoning.\n\n"
   end
 
   def self.find_plants_by_letter
@@ -39,14 +39,17 @@ class Cli
   def self.find_plants_by_id
     puts "What is the number of the plant you would like to look up?"
     id = gets.chomp
+    id_valid?(id)
+    plant = Plant.find_by_id(id)
+    PlantInfoScraper.new(plant)
+    list_plant_info(plant)
+  end
+
+  def self.id_valid?(id)
     if id.to_i > Plant.all.length || !/[1-9]/.match?(id)
       puts "That is not a valid entry. Please enter" \
       "the number corresponding to the plant you would like to look up. \n\n"
       find_plants_by_id
-    else
-      plant = Plant.find_by_id(id)
-      PlantInfoScraper.new(plant)
-      list_plant_info(plant)
     end
   end
 
@@ -56,5 +59,10 @@ class Cli
     puts "Scientific name:#{plant.scientific_name}\n\n"
     puts "These are the symptoms that occur when a cat eats #{plant.common_name.downcase}."
     puts plant.clinical_signs
+  end
+
+  def self.exit_session
+    puts "Thanks for using Toxic Plants! Goodbye!\n\n"
+    find_plants_by_letter
   end
 end
