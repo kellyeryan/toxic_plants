@@ -40,7 +40,8 @@ class Cli
     puts "What is the number of the plant you would like to look up?"
     id = gets.chomp
     if id.to_i > Plant.all.length || !/[1-9]/.match?(id)
-      puts "That is not a valid entry.\n\n"
+      puts "That is not a valid entry. Please enter" \
+      "the number corresponding to the plant you would like to look up. \n\n"
       find_plants_by_id
     else
       plant = Plant.find_by_id(id)
@@ -57,9 +58,3 @@ class Cli
     puts plant.clinical_signs
   end
 end
-
-# What if the user puts in invalid input--more than one letter,
-# a number instead of a letter (or vv), a symbol instead of a number or letter,
-# a number that isn't listed...? How do I deal with plants that
-# don't have additional common names?
-# What if user chooses a number that is too high or low?

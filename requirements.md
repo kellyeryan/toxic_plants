@@ -11,7 +11,9 @@ CLI:
 - [X] Provides the user with a list to make a selection (What are you listing?)
     After the user chooses a letter of the alphabet, I list the names of plants that start with that letter, numbered in alphabetical order.
 
-- [ ] Protects against invalid user input then outputs additional instructions (What happens when user input a number instead of a letter or vice versa?)
+- [X] Protects against invalid user input then outputs additional instructions (What happens when user input a number instead of a letter or vice versa?)
+  If upon the initial pass, the user puts in something other than a letter, the program outputs that the user should choose a letter from A-Z and try again. Since there are no plants starting with Q, X, or Z, the user also gets an error message if they choose those letters.
+  In the second pass, if the user enters in something other than a number or a number that does not correspond to a plant, the user also receives an error message and is prompted to try again.
 
 - [X] Pulls more data a 2nd time (What are you grabbing/scraping on your second pass? Are you going back to the same page or looking at a new one?)
     On the second pass, the program provides information to the user after the user enters in a number corresponding to the plant they are looking for.
@@ -20,7 +22,7 @@ CLI:
 - [X] Provides more data after the user makes a selection (What more specifically are you showing the user after your second pass?)
     I am showing the additional common names, scientific name, and the clinical signs that the cat has been poisoned by a particular plant.
 
-- [ ] Provides a README.md with a short description, installation and execution instructions
+- [X] Provides a README.md with a short description, installation and execution instructions
 
 
 Confirm:
