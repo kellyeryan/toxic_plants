@@ -29,10 +29,10 @@ class Cli
   end
 
   def self.letter_valid?(letter)
-    if !/[abcdefghijklmnoprstuvwy]/.match?(letter)
+    unless /[abcdefghijklmnoprstuvwy]/.match?(letter)
       puts "Please put in a letter from A-Z." \
       "There are no plants that start with Q, X, or Z. Try again.\n\n"
-    find_plants_by_letter
+      find_plants_by_letter
     end
   end
 
