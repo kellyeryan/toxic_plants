@@ -8,5 +8,7 @@ When the application starts, it will greet you and ask you for the first letter 
 
 You will then see a numbered list of plants. Choose the plant you would like more information on by typing in the corresponding number. Press enter and you should see more information on the plant you have chosen.
 
+At any time, if you would like to leave the program, type "exit" and press enter.
+
 That's it!
 

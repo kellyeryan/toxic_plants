@@ -20,6 +20,7 @@ class Cli
   def self.find_plants_by_letter
     puts "What is the first letter of the plant you would like to look up?"
     letter = gets.chomp
+    exit_session(letter)
     letter_valid?(letter)
     PlantsScraper.new(letter).create_plants
     Plant.all.each do |plant|
@@ -39,6 +40,7 @@ class Cli
   def self.find_plants_by_id
     puts "What is the number of the plant you would like to look up?"
     id = gets.chomp
+    exit_session(id)
     id_valid?(id)
     plant = Plant.find_by_id(id)
     PlantInfoScraper.new(plant)
@@ -61,10 +63,10 @@ class Cli
     puts plant.clinical_signs
   end
 
-  def self.exit_session(id=nil, letter=nil)
-    if id || letter == "exit"
-    puts "Thanks for using Toxic Plants! Goodbye!\n\n"
-    call
+  def self.exit_session(id = nil, letter = nil)
+    if letter == "exit" || id == "exit"
+      puts "Thanks for using Toxic Plants! Goodbye!\n\n"
+      exit
     end
   end
 end
