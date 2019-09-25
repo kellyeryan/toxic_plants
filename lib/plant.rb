@@ -6,8 +6,8 @@
 # Stores all plant related info.
 
 class Plant
-  attr_reader :common_name, :additional_common_names, :scientific_name, :clinical_signs, :url, :id
-  attr_writer :additional_common_names, :scientific_name, :clinical_signs
+  attr_accessor :additional_common_names, :scientific_name, :clinical_signs
+  attr_reader :common_name, :url, :id
 
   @@all = []
 
@@ -26,5 +26,11 @@ class Plant
     all.find do |plant|
       id.to_i == plant.id
     end
+  end
+
+  def update_attributes(additional_common_names:, scientific_name:, clinical_signs:)
+    self.additional_common_names = additional_common_names
+    self.scientific_name = scientific_name
+    self.clinical_signs = clinical_signs
   end
 end

@@ -34,7 +34,7 @@ class Cli
     return true if /[abcdefghijklmnoprstuvwy]/.match?(letter)
 
     puts "Please put in a letter from A-Z." \
-    "There are no plants that start with Q, X, or Z. Try again.\n\n"
+         "There are no plants that start with Q, X, or Z. Try again.\n\n"
     find_plants_by_letter
     false
   end
@@ -43,7 +43,7 @@ class Cli
     puts "What is the number of the plant you would like to look up?"
     id = gets.chomp
     exit_session(id)
-    return unless id_valid?(id)
+    return unless id_valid?(id.to_i)
 
     plant = Plant.find_by_id(id)
     PlantInfoScraper.new(plant)
@@ -51,10 +51,10 @@ class Cli
   end
 
   def self.id_valid?(id)
-    return true unless id.to_i > Plant.all.length || !/[1-9]/.match?(id)
+    return true unless id > Plant.all.length || id <= 0
 
     puts "That is not a valid entry. Please enter" \
-    " the number corresponding to the plant you would like to look up. \n\n"
+         " the number corresponding to the plant you would like to look up. \n\n"
     find_plants_by_id
     false
   end

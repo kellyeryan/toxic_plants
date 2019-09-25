@@ -15,10 +15,6 @@ class PlantsScraper
     @parsed_page = Nokogiri::HTML(unparsed_page)
   end
 
-  def plant_names
-    @parsed_page.css("div.views-field-title a")
-  end
-
   def create_plants
     plant_names.each_with_index do |plant, index|
       common_name = plant.text
@@ -26,5 +22,11 @@ class PlantsScraper
       id = index + 1
       Plant.new(common_name, url, id)
     end
+  end
+
+private
+
+  def plant_names
+    @parsed_page.css("div.views-field-title a")
   end
 end
