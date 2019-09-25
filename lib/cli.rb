@@ -21,7 +21,8 @@ class Cli
     puts "What is the first letter of the plant you would like to look up?"
     letter = gets.chomp
     exit_session(letter)
-    letter_valid?(letter)
+    return unless letter_valid?(letter)
+
     PlantsScraper.new(letter).create_plants
     Plant.all.each do |plant|
       puts "#{plant.id}. #{plant.common_name}"
@@ -30,11 +31,12 @@ class Cli
   end
 
   def self.letter_valid?(letter)
-    return if /[abcdefghijklmnoprstuvwy]/.match?(letter)
+    return true if /[abcdefghijklmnoprstuvwy]/.match?(letter)
 
     puts "Please put in a letter from A-Z." \
     "There are no plants that start with Q, X, or Z. Try again.\n\n"
     find_plants_by_letter
+    false
   end
 
   def self.find_plants_by_id
